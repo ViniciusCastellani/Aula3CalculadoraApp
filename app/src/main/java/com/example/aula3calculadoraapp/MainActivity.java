@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     private int contadorOperador = 0;
 
     private ArrayList<String> listaElementos = new ArrayList<>();
-    private final ArrayList<String> operadores = new ArrayList<>(Arrays.asList("+","-","/","x"));
 
     // StringBuilder = String mutável, quando é modificado não é criado um novo objeto
     private StringBuilder expressao = new StringBuilder();
@@ -80,17 +79,15 @@ public class MainActivity extends AppCompatActivity {
     public void onClickIgual(View v) {
         String expressaoFinal = expressao.toString();
 
-        if (expressao.length() == 0){
+        if (expressaoFinal.length() == 0){
             return;
         }
 
-        else if (expressao.length() % 2 == 0 || expressao.length() == 1) {
-            return;
-        }
-
-        //cria uma lista com todos os elementos da expressão
         String[] elementos = expressaoFinal.split(" ");
-        //Coloca o conjunto de todos os elementos na ArrayList sem precisar usar for
+        if (elementos.length % 2 == 0 || elementos.length == 1) {
+            return;
+        }
+
         listaElementos.addAll(Arrays.asList(elementos));
 
         double resultadoNum = calcularExpressao(listaElementos);
